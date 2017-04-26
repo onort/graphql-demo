@@ -9,7 +9,7 @@ import Db from '../db'
 const Query = new GraphQLObjectType({
   name: 'Query',
   description: 'This is root query.',
-  fields: () => ({ 
+  fields: () => ({
     users: {
       type: new GraphQLList(UserType),
       args: {

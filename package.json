@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint server/",
     "start": "babel-node server/index.js"
   },
   "keywords": [],
@@ -23,7 +24,6 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-es2015": "^6.24.1",
     "eslint": "^3.19.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-react": "^6.10.3"
+    "eslint-plugin-import": "^2.2.0"
   }
 }

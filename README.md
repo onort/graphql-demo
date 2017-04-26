@@ -1,7 +1,5 @@
 # GraphQL Demo
 
-A learning graphQL learning project. 
+A [graphQL](http://graphql.org/) learning project. 
 
-### Notes
-
-* babel-cli must be installed to run `server/index.js`
+Build with node, express, express-graphql, postgres, sequelize. Dummy data will be created by faker.js on every run.

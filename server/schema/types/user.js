@@ -9,37 +9,37 @@ const UserType = new GraphQLObjectType({
   name: 'User',
   description: 'This represents user object type',
   fields: () => ({
-    userId: { 
+    userId: {
       type: GraphQLString,
       resolve(user) {
         return user.userId
       }
     },
-    firstName: { 
+    firstName: {
       type: GraphQLString,
       resolve(user) {
         return user.firstName
       }
     },
-    lastName: { 
+    lastName: {
       type: GraphQLString,
       resolve(user) {
         return user.lastName
       }
     },
-    email: { 
+    email: {
       type: GraphQLString,
       resolve(user) {
         return user.email
       }
     },
-    avatar: { 
+    avatar: {
       type: GraphQLString,
       resolve(user) {
         return user.avatar
       }
     },
-    city: { 
+    city: {
       type: GraphQLString,
       resolve(user) {
         return user.city
