@@ -1,26 +1,14 @@
 import express from 'express'
 import graphqlHTTP from 'express-graphql'
-import { buildSchema } from 'graphql'
+import Schema from './schema/schema'
 
-const Schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`)
-
-const Root = {
-  hello: () => {
-    return 'Hello World!'
-  }
-}
-
+const PORT = 3000
 const app = express()
 
 app.use('/graphql', graphqlHTTP({
   schema: Schema,
-  rootValue: Root,
-  graphiql: true
+  pretty: true,
+  graphiql: true,
 }))
 
-app.listen(4000, () => console.log('Running App on port 4000')) // eslint-disable-line no-console
-
+app.listen(PORT, () => console.log(`App is running on port ${PORT}`)) // eslint-disable-line
