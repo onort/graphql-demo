@@ -1,12 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
+import { ApolloProvider } from 'react-apollo'
+import './reset.css'
+import './index.css'
 
-const App = () => {
-  return (
-    <div>
-      <h3>Hello There This is a React App</h3>
-    </div>
-  )
-}
+import App from './components/App'
 
-ReactDOM.render(<App />, document.getElementById('app'))
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({ uri: 'http://localhost:3000/graphql'}),
+})
+
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById('app')
+)
