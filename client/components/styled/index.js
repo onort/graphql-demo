@@ -2,10 +2,10 @@ import styled from 'styled-components'
 
 export const MainContainer = styled.div`
   padding: 2em;
-  background-color: #e2e2e2;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  max-width: 900px;
   box-sizing: border-box;
+  margin: 0 auto;
 `
 
 export const Title = styled.h1`

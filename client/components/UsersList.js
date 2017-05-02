@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { graphql, gql } from 'react-apollo'
 
 import {Text} from './styled'
+import UserListItem from './UserListItem'
 
 class UsersList extends Component {
 
@@ -22,20 +22,21 @@ class UsersList extends Component {
     return (
       <div>
         <Text>Users list has {users.length} items.</Text>
+        {users.map(user => <UserListItem key={user.userId} user={user} />)}
       </div>
     )
   }
 }
 
-const UsersQuery = gql`
+const UsersListQuery = gql`
   query {
     users {
-      firstName
-      lastName
+      ...UserListItem
     }
   }
+  ${UserListItem.fragments.user}
 `
 
-const UsersListWithData = graphql(UsersQuery)(UsersList)
+const UsersListWithData = graphql(UsersListQuery)(UsersList)
 
 export default UsersListWithData
