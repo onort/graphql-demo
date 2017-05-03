@@ -6,8 +6,8 @@ import { ApolloProvider } from 'react-apollo'
 import './reset.css'
 import './index.css'
 
-import App from './components/App'
-import UserProfile from './components/UserProfile'
+import App from './App'
+import { NavMenu, UsersList, UserProfile } from './components'
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({ uri: 'http://localhost:3000/graphql'}),
@@ -17,7 +17,9 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <Router>
       <div>
+        <NavMenu />
         <Route exact path="/" component={App} />
+        <Route path="/users" component={UsersList} />
         <Route path="/user/:userId" component={UserProfile} />
       </div>
     </Router>

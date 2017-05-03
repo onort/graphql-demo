@@ -1,13 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-import { MainContainer, Subtitle, Title } from './styled'
-import UsersList from './UsersList'
+import { Button, MainContainer, Subtitle, Title } from './components/styled'
 
 const App = () => (
   <MainContainer>
     <Title>Apollo React Client</Title>
     <Subtitle>Learning to consume graphql api using apollo.</Subtitle>
-    <UsersList />
+    <Link to="/users">
+      <Button>Users List</Button>
+    </Link>
   </MainContainer>
 )
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, gql } from 'react-apollo'
 
-import {Text} from './styled'
+import { MainContainer, Text, Title } from '../styled'
 import UserListItem from './UserListItem'
 
 class UsersList extends Component {
@@ -16,14 +16,15 @@ class UsersList extends Component {
   }
 
   render() {
-    console.log('Render Logs props', this.props) // eslint-disable-line
+    // console.log('Render Logs props', this.props) // eslint-disable-line
     const { loading, users } = this.props.data
     if (loading) return <div>Loading...</div>
     return (
-      <div>
+      <MainContainer>
+        <Title>Users List</Title>
         <Text>Users list has {users.length} items.</Text>
         {users.map(user => <UserListItem key={user.userId} user={user} />)}
-      </div>
+      </MainContainer>
     )
   }
 }

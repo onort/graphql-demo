@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { gql } from 'react-apollo'
 import styled from 'styled-components'
 
-import { Text } from './styled'
+import { Text } from '../styled'
 
 const Frame = styled.div`
   padding: 1em;
