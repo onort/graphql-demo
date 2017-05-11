@@ -3,53 +3,25 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from 'graphql'
-import BookmarkType from './bookmark'
+import { CityType, PostType } from './'
 
 const UserType = new GraphQLObjectType({
   name: 'User',
   description: 'This represents user object type',
   fields: () => ({
-    userId: {
+    userId: { type: GraphQLString },
+    firstName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    fullName: {
       type: GraphQLString,
-      resolve(user) {
-        return user.userId
-      }
+      resolve: user => `${user.firstName} ${user.lastName}`
     },
-    firstName: {
-      type: GraphQLString,
-      resolve(user) {
-        return user.firstName
-      }
-    },
-    lastName: {
-      type: GraphQLString,
-      resolve(user) {
-        return user.lastName
-      }
-    },
-    email: {
-      type: GraphQLString,
-      resolve(user) {
-        return user.email
-      }
-    },
-    avatar: {
-      type: GraphQLString,
-      resolve(user) {
-        return user.avatar
-      }
-    },
-    city: {
-      type: GraphQLString,
-      resolve(user) {
-        return user.city
-      }
-    },
-    bookmarks: {
-      type: new GraphQLList(BookmarkType),
-      resolve(user) {
-        return user.getBookmarks() // method provided by sequelize
-      }
+    email: { type: GraphQLString },
+    avatar: { type: GraphQLString },
+    city: { type: CityType },
+    posts: {
+      type: new GraphQLList(PostType),
+      resolve: user => user.getPosts() // method provided by sequelize
     }
   })
 })

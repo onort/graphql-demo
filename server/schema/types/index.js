@@ -1,7 +1,9 @@
-import BookmarkType from './bookmark'
+import CityType from './city'
+import PostType from './post'
 import UserType from './user'
 
 export {
-  BookmarkType,
+  CityType,
+  PostType,
   UserType,
 }
