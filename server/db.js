@@ -9,6 +9,11 @@ const seq = new Sequelize(
   {
     dialect: 'postgres',
     host: 'localhost',
+    pool: {
+      max: 10,
+      min: 0,
+      idle: 10000,
+    }
   }
 )
 
@@ -72,8 +77,14 @@ function createFakePost(user) {
   })
 }
 
+// DB connection test
+seq
+  .authenticate()
+  .then(() => console.log('Connected to PostgreSQL')) // eslint-disable-line no-console
+  .catch(err => console.log('PostgreSQL connection error.', err)) // eslint-disable-line no-console
+
 // Create Initial Database Data (Will be overwritten everytime)
-// seq.sync({ force: true }).then(() => {
+// seq.sync({ force: true, logging: console.log }).then(() => {
 //   _.times(10, () => {
 //     createFakeUser().then(user => _.times(3, () => createFakePost(user)))
 //   })

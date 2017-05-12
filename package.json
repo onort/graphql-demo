@@ -19,6 +19,7 @@
     "faker": "^4.1.0",
     "graphql": "^0.9.3",
     "lodash": "^4.17.4",
+    "npm-run-all": "^4.0.2",
     "pg": "^6.1.5",
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.8",
@@ -27,7 +28,8 @@
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
     "sequelize": "^3.30.4",
-    "styled-components": "^1.4.5"
+    "styled-components": "^1.4.5",
+    "validator": "^7.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
