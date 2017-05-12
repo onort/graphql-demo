@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint server/",
     "api": "nodemon server/index.js --exec babel-node --presets es2015,stage-0",
-    "serve": "webpack-dev-server"
+    "client": "webpack-dev-server",
+    "start": "npm-run-all --parallel api client"
   },
   "keywords": [],
   "author": "",

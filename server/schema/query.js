@@ -4,7 +4,6 @@ import {
   GraphQLString,
 } from 'graphql'
 import { CityType, PostType, UserType } from './types'
-import Db from '../db'
 
 const Query = new GraphQLObjectType({
   name: 'Query',
@@ -15,8 +14,8 @@ const Query = new GraphQLObjectType({
       args: {
         city: { type: CityType },
       },
-      resolve(root, args) {
-        return Db.models.user.findAll({ where: args }) // returns a promise
+      resolve(root, args, { db }) {
+        return db.models.user.findAll({ where: args }) // returns a promise
       }
     },
     user: {
@@ -25,8 +24,8 @@ const Query = new GraphQLObjectType({
         userId: { type: GraphQLString },
         email: { type: GraphQLString }
       },
-      resolve(root, args) {
-        return Db.models.user.findOne({ where: args })
+      resolve(root, args, { db }) {
+        return db.models.user.findOne({ where: args })
       }
     },
     post: {
@@ -34,14 +33,14 @@ const Query = new GraphQLObjectType({
       args: {
         postId: { type: GraphQLString }
       },
-      resolve(root, args) {
-        return Db.models.post.findOne({ where: args })
+      resolve(root, args, { db }) {
+        return db.models.post.findOne({ where: args })
       }
     },
     allPosts: {
       type: new GraphQLList(PostType),
-      resolve() {
-        return Db.models.post.findAll()
+      resolve(root, args, { db }) {
+        return db.models.post.findAll()
       }
     }
   })

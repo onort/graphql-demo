@@ -3,7 +3,8 @@ import graphqlHTTP from 'express-graphql'
 import cors from 'cors'
 import errorhandler from 'errorhandler'
 
-import Schema from './schema/schema'
+import db from './db'
+import Schema from './schema'
 
 const PORT = 3000
 const app = express()
@@ -14,6 +15,7 @@ app.use('/graphql', graphqlHTTP({
   schema: Schema,
   pretty: true,
   graphiql: true,
+  context: { db },
 }))
 
 app.listen(PORT, () => console.log(`App is running on port ${PORT}`)) // eslint-disable-line
