@@ -11,27 +11,27 @@ class UsersList extends Component {
     data: PropTypes.shape({
       loading: PropTypes.bool,
       error: PropTypes.object,
-      users: PropTypes.array,
+      allUsers: PropTypes.array,
     }).isRequired,
   }
 
   render() {
     // console.log('Render Logs props', this.props) // eslint-disable-line
-    const { loading, users } = this.props.data
+    const { loading, allUsers } = this.props.data
     if (loading) return <div>Loading...</div>
     return (
       <MainContainer>
         <Title>Users List</Title>
-        <Text>Users list has {users.length} items.</Text>
-        {users.map(user => <UserListItem key={user.userId} user={user} />)}
+        <Text>Users list has {allUsers.length} items.</Text>
+        {allUsers.map(user => <UserListItem key={user.userId} user={user} />)}
       </MainContainer>
     )
   }
 }
 
 const UsersListQuery = gql`
-  query {
-    users {
+  query getUsersInfo {
+    allUsers {
       ...UserListItem
     }
   }
