@@ -80,13 +80,37 @@ const User = seq.define('user', {
 const Post = seq.define('post', {
   slug: { type: Sequelize.TEXT, allowNull: true },
   postId: { type: Sequelize.STRING, unique: true, allowNull: false },
-  title: { type: Sequelize.TEXT, allowNull: false },
-  content: { type: Sequelize.TEXT, allowNull: false },
+  title: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [3, 300],
+        msg: 'Title must be at lease 3 characters long.'
+      },
+    }
+  },
+  content: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [3, undefined],
+        msg: 'Content must be longer than 3 characters.'
+      }
+    }
+  },
   image: { type: Sequelize.TEXT }
   },
   {
     hooks: {
-      beforeValidate: post => {
+      beforeValidate: async post => {
+        await Post.findOne({ where: { title: post.title } })
+          .then(titleExists => {
+            if(titleExists) {
+              post.title = post.title.concat(`-${Date.now()}`)
+            }
+          })
         post.slug = slugify(post.title).toLowerCase()
       }
     }
