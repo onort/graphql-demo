@@ -1,4 +1,5 @@
 import {
+  GraphQLInt,
   GraphQLList,
   GraphQLObjectType,
   GraphQLString,
@@ -7,7 +8,7 @@ import { CityType, PostType } from './'
 
 const UserType = new GraphQLObjectType({
   name: 'User',
-  description: 'This represents user object type',
+  description: 'This represents user object type. Posts can be limited or have an offset',
   fields: () => ({
     userId: { type: GraphQLString },
     firstName: { type: GraphQLString },
@@ -21,7 +22,11 @@ const UserType = new GraphQLObjectType({
     city: { type: CityType },
     posts: {
       type: new GraphQLList(PostType),
-      resolve: user => user.getPosts() // method provided by sequelize
+      args: {
+        limit: { type: GraphQLInt },
+        offset: { type: GraphQLInt }
+      },
+      resolve: (user, args) => user.getPosts(args) // method provided by sequelize
     }
   })
 })

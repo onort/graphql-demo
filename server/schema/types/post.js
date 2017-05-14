@@ -3,6 +3,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from 'graphql'
+import { UserType } from './'
 
 const PostType = new GraphQLObjectType({
   name: 'Post',
@@ -13,6 +14,12 @@ const PostType = new GraphQLObjectType({
     title: { type: new GraphQLNonNull(GraphQLString) },
     content: { type: new GraphQLNonNull(GraphQLString) },
     image: { type: GraphQLString },
+    author: {
+      type: UserType,
+      resolve(post) {
+        return post.getUser() // provided by sequelize
+      }
+    }
   })
 })
 
