@@ -7,7 +7,7 @@ import './reset.css'
 import './index.css'
 
 import App from './App'
-import { NavMenu, UsersList, UserProfile } from './components'
+import { NavMenu, PostDetail, PostsList, UsersList, UserProfile } from './components'
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({ uri: 'http://localhost:3000/graphql'}),
@@ -19,6 +19,8 @@ ReactDOM.render(
       <div>
         <NavMenu />
         <Route exact path="/" component={App} />
+        <Route path="/posts" component={PostsList} />
+        <Route path="/post/:postId" component={PostDetail} />
         <Route path="/users" component={UsersList} />
         <Route path="/user/:userId" component={UserProfile} />
       </div>

@@ -108,10 +108,10 @@ const Post = seq.define('post', {
         await Post.findOne({ where: { title: post.title } })
           .then(titleExists => {
             if(titleExists) {
-              post.title = post.title.concat(`-${Date.now()}`)
+              post.title = post.title.concat(`-${Date.now()}.`)
             }
           })
-        post.slug = slugify(post.title).toLowerCase()
+        post.slug = slugify(post.title).slice(0, -1).toLowerCase()
       }
     }
   }
@@ -156,6 +156,7 @@ seq
 //     _.times(10, () => {
 //       createFakeUser().then(user => _.times(3, () => createFakePost(user)))
 //     })
+//     console.log('Fake user and post data has been created.')
 //   })
 //   .catch(err => console.log('Database sync error', err))
 /* eslint-enable no-console */

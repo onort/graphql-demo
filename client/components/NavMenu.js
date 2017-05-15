@@ -9,8 +9,8 @@ const Nav = styled.nav`
 `
 
 const NavItem = styled.span`
-  margin: 0 1em;
-  font-size: 1.5em;
+  margin: 0 0.75em;
+  font-size: 1.25em;
 `
 
 const NavMenu = () => {
@@ -18,6 +18,9 @@ const NavMenu = () => {
     <Nav>
       <NavLink exact activeStyle={activeNavStyle} to="/">
         <NavItem>Home</NavItem>
+      </NavLink>
+      <NavLink activeStyle={activeNavStyle} to="/posts">
+        <NavItem>Posts List</NavItem>
       </NavLink>
       <NavLink activeStyle={activeNavStyle} to="/users">
         <NavItem>Users List</NavItem>
